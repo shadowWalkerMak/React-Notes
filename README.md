@@ -48,7 +48,19 @@ Button Size:<br/>
         setData({itemList})<br/>
       });<br/>
        
+Delete Item <br/>
 
+App.js<br/>
+1) create a deleteItem function with input of item,get from itemDisplay.js<br/>
+2) create a requestOptions with Delete request method <br/>
+3) fetch to json server with item.id and requestOptions<br/>
+4) wait for response from json server<br/>
+5) get the index of item<br/>
+6) delete the item from itemList<br/>
+7) setData ({itemList:itemList}) -this will refresh the data display table<br/>
+
+itemDisplay.js<br/>
+create a button with onClick arrow function ={()=>deleteItem(item)}> <br/>
 
   
   
