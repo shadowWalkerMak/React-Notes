@@ -17,6 +17,32 @@ function App() {
       .then((data) => setData({itemList:data}));
   }, [])
   
+  const deleteItem = (item) => {
+    //make a copy of itemList
+    const itemList = data["itemList"];
+    //create a request with method = Delete
+    const requestOptions = {
+      method: "DELETE",
+    }
+    //pass the delete item id to jason server
+    //we need to convert json to string by using `` and ${item.id}
+    fetch(`http://localhost:3000/items/${item.id}`, requestOptions).then
+      //wait for response ,
+      ((response) => {
+        if (response.ok) {
+          //if response is OK then we need to get the index of the deleted item from the itemList array
+          const idx = itemList.indexOf(item);
+          //delete one item from the itemList with index number equal to idx
+          itemList.splice(idx, 1)
+          setData({itemList:itemList})
+
+        }
+
+       }
+    );
+
+  }
+
 
   function addItemToDate(item) {
     //make a copy of data list
@@ -53,7 +79,7 @@ function App() {
           <Display name={"Member Information "} detail={"all paid member for 2023"} />
         </div>
         <div className="row mt-3">
-          <ItemDisplay members ={data.itemList} />
+          <ItemDisplay members={data.itemList} deleteItem={deleteItem} />
         </div>
         <div className="row mt-3">
           <AddItem addNewItem={addItemToDate} />

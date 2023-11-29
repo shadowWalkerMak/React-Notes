@@ -1,5 +1,5 @@
 import React from "react";
-function ItemDisplay(props) {
+function ItemDisplay({members, deleteItem }) {
     return (
         <div className="container">
             <div className="row">
@@ -12,16 +12,21 @@ function ItemDisplay(props) {
                             <th scope="col">Id</th>
                             <th scope="col">Name</th>
                             <th scope="col">Age</th>
+                            <th scope="col">Delete</th>
                         </tr>
                     </thead>
                     <tbody>
                         
-                        {props.members.map((item, index) => {
+                        {members.map((item, index) => {
                             return (
                                 <tr>
                                     <th scope="row">{index}</th>     
                                     <td>{item.name}</td>
                                     <td>{item.age}</td>
+                                    <td><button className="btn btn-danger" onClick={() => deleteItem(item)}>
+                                        Delete
+                                        </button>
+                                    </td>
                                </tr>
                             )
                         
